@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Textplode.js</title>
+
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	$(document).ready(function() {
+		console.log('hello');
+
+		var characters = $(".textplode").text().split("");
+
+		$(".textplode").empty();
+
+		$.each(characters, function(i, el) {
+		   $(".textplode").append("<span class="+el+">"+el+"</span");
+		});
+
+		$(".textplode span").each(function(){
+			$(this).css("position","absolute");
+			  randomX = Math.ceil(Math.random() * 75);
+			  randomY = Math.ceil(Math.random() * 75);
+				console.log(randomX);
+				console.log(randomY);
+			  $(this).css("margin-left", randomX + "%");
+			  $(this).css("margin-top", randomY + "%");
+		});
+
+	});
+
+</script>
+
+<style>
+
+	* {
+		margin: 0;
+		font-family: "helvetica neue", helvetica;
+		background-color: black;
+	}
+
+	h1 {
+		font-size: 100px;
+		color: white;
+	}
+
+</style>
+
+</head>
+	<body>
+
+		<h1 class="textplode">Hello</h1>
+
+	</body>
+</html>
