@@ -16,12 +16,14 @@
 
 		console.log(charCount);
 
+		// split characters
 		$(".textplode").empty();
 
 		$.each(characters, function(i, el) {
 		   $(".textplode").append("<span class="+el+">"+el+"</span");
 		});
 
+		// position randomly
 		$(".textplode.random span").each(function(){
 			$(this).css("position","absolute");
 			  randomX = Math.ceil(Math.random() * 75);
@@ -32,12 +34,26 @@
 			  $(this).css("margin-top", randomY + "%");
 		});
 
+		// distribute horizontally
 		$(".textplode.horizontal").css("width","100%");
 		$(".textplode.horizontal span").each(function(){
 
 			$(this).css("display","inline-block");
 			$(this).css("text-align","center");
 			$(this).css("width",(100 / charCount)+'%');
+		});
+
+		$(".textplode.rotate span").each(function(){
+
+			var rotateMax = 32; // max amount of rotation in degrees
+			var rotateMin = 30; // min amount of rotation in degrees
+			var rotateAmount = Math.ceil(Math.random() * rotateMax);
+
+			console.log(rotateAmount);
+
+			$(this).css("display","inline-block");
+			$(this).css("-webkit-transform","rotate("+rotateAmount+"deg)");
+
 		});
 
 	});
@@ -49,6 +65,10 @@
 	* {
 		margin: 0;
 		font-family: "helvetica neue", helvetica;
+
+	}
+
+	body {
 		background-color: black;
 	}
 
@@ -63,7 +83,9 @@
 	<body>
 
 		<!-- <h1 class="textplode random">Hello</h1> -->
-		<h1 class="textplode horizontal">Hello</h1>
+		<!-- <h1 class="textplode horizontal">Hello</h1> -->
+		<h1 class="textplode rotate">Hello</h1>
+		<h1 class="textplode horizontal rotate">Hello</h1>
 
 	</body>
 </html>
