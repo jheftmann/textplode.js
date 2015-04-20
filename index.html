@@ -56,6 +56,44 @@
 
 		});
 
+
+		// vary line starting indent randomly
+        $(".textplode-varied").find(".varied-inner").each(function(){
+
+            var $this = $(this);
+            var originalText = $this.text();
+            $this.empty();
+
+            var sections = [];
+
+            $.each( originalText.split(" "), function(){
+                var $span = $("<span style='display:inline-block;'>" + this + "</span>");
+                $this.append($span);
+
+                var index = $span.position().top;
+
+                if( sections[index] === undefined ){
+                    sections[index] = "";
+                }
+
+                sections[index] += $span.text() + " ";
+
+            });
+
+            $this.empty();
+
+            for(var i = 0; i< sections.length; i++){
+                if( sections[i] !== undefined ){
+                    var spanText = $.trim(sections[i]);                     
+                    $this.append("<span style='display:inline-block;'>" + spanText + "</span>");
+                     $this.find('span').each(function(){
+                     	variation = Math.floor(Math.random() * 500);
+                     	$(this).addClass('foo').css('margin-left', variation);
+                     });
+                }
+            }
+        });
+
 	});
 
 </script>
@@ -74,8 +112,15 @@
 
 	h1 {
 		font-size: 100px;
+		line-height: 1.0;
 		color: white;
 	}
+
+
+
+    .title {
+        width: 600px;
+    }
 
 </style>
 
@@ -84,8 +129,12 @@
 
 		<!-- <h1 class="textplode random">Hello</h1> -->
 		<!-- <h1 class="textplode horizontal">Hello</h1> -->
-		<h1 class="textplode rotate">Hello</h1>
-		<h1 class="textplode horizontal rotate">Hello</h1>
+<!-- 		<h1 class="textplode rotate">Hello</h1>
+		<h1 class="textplode horizontal rotate">Hello</h1> -->
+
+	<div class="title textplode-varied">
+        <h1 class="varied-inner">SOME TEXT LONG TEXT ANDTHISISLONG AND THIS OTHER TEXT</h1>
+    </div>
 
 	</body>
 </html>
